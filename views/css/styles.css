@@ -1,0 +1,31 @@
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+
+.minHeight {
+
+	min-height: 100%;	
+}
+
+
+
+.caruselShadow {
+  -webkit-box-shadow: 8px 8px 15px 1px #2d2d2d;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    8px 8px 15px 1px #2d2d2d;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         8px 8px 15px 1px #2d2d2d;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.boxShadow {
+  -webkit-box-shadow: 4px 4px 10px 1px #727272;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    4px 4px 10px 1px #727272;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         4px 4px 10px 1px #727272;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.image-container{
+	display: inline-block;
+	overflow: hidden;
+	max-height: 500px;
+}
