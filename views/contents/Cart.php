@@ -18,7 +18,7 @@ $grandTotal = NULL;
 $btnClass = "btn btn-secondary btn-lg btn-block disabled";
 
 //Button link to checkout page
-$btnLink = '"#"';
+$btnLink = BASE_PATH . "/Cart/gotoCheckout";
 
 //if user has chosen data needed.
 if(is_array($products)){
@@ -42,18 +42,18 @@ $tax = "%10";
 
  ?>
 
-<div class="col-12 p-6">
+<div class="col-lg-12 p-6">
 
 
 	<!-- ROW WITH GENERATED INFORMATION  -->
 	<div class="row my-4 justify-content-end">
 		<!-- MIDDLE SECTION  -->
-		<div class="col-9">
+		<div class="col-xl-9">
 
 
 			<!-- HEADER OF THE CART ITEM INFORMATION  -->
 			<div class="row">
-				<div class="col-12">
+				<div class="col-lg-12">
 					<div class="border rounded border-muted ">
 						<p class="h6 text-muted p-3 border border-bottom border-muted  bg-light ">Shopping Cart</p>
 
@@ -65,11 +65,11 @@ $tax = "%10";
 
 								<div class="row p-3">
 
-									<div class="col-2">
+									<div class="col-lg-2">
 										<img src=<?php echo  '"data:image/jpeg;base64,' . $product['image'] . '"'; ?> width="100%"/>
 									</div>
 
-									<div class="col-4">
+									<div class="col-lg-4">
 											<a href= <?php echo BASE_PATH . '/Productpage/index/id/' . $product['uid']; ?> >
 												<?php echo $product['title']; ?>
 											</a>
@@ -92,7 +92,7 @@ $tax = "%10";
 												</small>
 											</div>
 									</div>
-									<div class="col-5">
+									<div class="col-lg-5">
 										<p  class="text-muted" style="font-size:0.8em; margin:0; padding:0;">Item Price: 
 											<span>
 												$<?php echo $product['price'] . " x " . $product['qty']; ?>  
@@ -127,9 +127,9 @@ $tax = "%10";
 		</div>
 
 		<!-- CHRCKOUT COLUMN WITH TOTAL COST INFORMATION  -->
-		<div class="col-3">
+		<div class="col-xl-3">
 			<div class="row">
-				<div class="col-10">
+				<div class="col-xl-10">
 					<div class="border rounded border-muted">
 						<p class="h6 text-muted p-3 border border-bottom border-muted text-center  bg-light ">Shopping Cart Total</p>
 						<div class="p-3 row">
@@ -154,7 +154,7 @@ $tax = "%10";
 			</div>
 
 			<div class="row my-4">
-				<span class="col-10">
+				<span class="col-xl-10">
 					<?php 
 						echo '<a href="' . $btnLink . '" class="' . $btnClass . '" >Continue Checkout</a>'; 
 					?>

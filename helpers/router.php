@@ -64,7 +64,7 @@ class Router{
 
 		$object = new $this->CONTROLLER;
 
-		if(method_exists($object, $method) || !is_null($method)){
+		if(method_exists($object, $method) && !is_null($method)){
 			$this->ACTION = $method;
 		}
 

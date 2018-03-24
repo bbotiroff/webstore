@@ -1,13 +1,13 @@
-<div class="row col-12 m-3" >
-	<div class="col-3">
+<div class="row col-lg-12 m-3" >
+	<div class="col-lg-3">
 		<img src=<?php echo  '"data:image/jpeg;base64,' . $product['image'] . '"'; ?> width="100%"/>
 
 	</div>
 
 
-	<div class="col-9">
+	<div class="col-lg-9">
 		<div class="row">
-			<div class="col-9">
+			<div class="col-lg-9">
 				<!-- I will hold all the data related to the product  -->
 				<h3 class="border-bottom"> <?php echo $product['title']; ?> </h3>
 
@@ -20,9 +20,9 @@
 				<p><span style="font-weight: 600;">Description: </span><span class="text-secondary"><?php echo $product['description']; ?>  </span></p>
 				
 			</div>
-			<div class="col-3 float-right">
+			<div class="col-lg-3 float-right">
 				<div class="row m-3 text-center" style="font-size: 1.6em;">
-					<span class="col-12 text-left">Price: $<?php echo $product['price']; ?> </span>
+					<span class="col-lg-12 text-left">Price: $<?php echo $product['price']; ?> </span>
 
 				</div>
 	
@@ -64,8 +64,8 @@
 
 
 #				<div class="row">
-#					<span class="col-6 text-right">Quantity:</span>
-#					<span class="col-6">
+#					<span class="col-lg-6 text-right">Quantity:</span>
+#					<span class="col-lg-6">
 #						# Will be generated dynamically with php script
 #						<?php 
 #							print "<select name=\"qty\">";

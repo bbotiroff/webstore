@@ -65,28 +65,35 @@
 
 
 
-<div class="row mb-2">
+<div class="row my-4">
 
 <?php if(is_array($products)){
 
 	foreach ($products as $product) {?>
 
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="card flex-md-row mb-4 h-md-250 boxShadow">
 			
 			<img class="card-img-right flex-auto d-none d-md-block" src=<?php echo '"data:image/jpeg;base64,' . $product['image'] . '"'; ?> height="300px"/>
 		
 
-		 	<div class="card-body d-flex flex-column align-items-start">
-				<h5 class="row mb-0">
-					<a class="col-10" href=<?php echo BASE_PATH . '/Productpage/index/id/' . $product['uid']; ?> >
-						<?php echo substr($product['title'], 0, 25); ?> 
-					</a> 
-					<a href=<?php echo BASE_PATH . "/Cart/addToCart/id/" . $product['uid'] . "/qty/1";  ?> class="col-2">	<i class="fas fa-cart-plus fa-s float-right"></i></a>
-				</h5>
-				<p  class="mb-1 text-muted">By <?php echo $product['author']; ?></p>
-				<p><span style="font-weight: 600;">Price: </span><span class="text-secondary">$ <?php echo $product['price']; ?> </span></p>
-				<p><?php echo substr($product['description'], 0, 150) . ".."; ?></p>
+		 	<div class="card-body d-flex flex-column align-items-start row ">
+				<div class="col-10">
+					<h5 class="mb-0">
+						<a href=<?php echo BASE_PATH . '/Productpage/index/id/' . $product['uid']; ?> >
+							<?php echo substr($product['title'], 0, 25); ?> 
+						</a> 
+					</h5>
+					<p  class="mb-1 text-muted">By <?php echo $product['author']; ?></p>
+					<p><span style="font-weight: 600;">Price: </span><span class="text-secondary">$ <?php echo $product['price']; ?> </span></p>
+					<p><?php echo substr($product['description'], 0, 150) . ".."; ?></p>	
+				</div>
+				<div class="h4 col-md-2">
+					<a href=<?php echo BASE_PATH . "/Cart/addToCart/id/" . $product['uid'] . "/qty/1";  ?>>	
+						<i class="fas fa-cart-plus fa-s d-none d-md-block d-xl-block"></i>
+						<span class="h6 d-block d-md-none d-xl-none alert alert-primary text-center" role="alert"><i class="fas fa-cart-plus fa-s mr-2"></i>ADD TO CART</span>
+					</a>
+				</div>
 			</div>
 
           </div>

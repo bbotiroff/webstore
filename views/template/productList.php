@@ -49,16 +49,16 @@
 
 	<div class="row border my-2 p-3">
 
-		<div class="col-2">
+		<div class="col-lg-2">
 			<img src=<?php echo  '"data:image/jpeg;base64,' . $product['image'] . '"'; ?> width="100%"/>
 		</div>
 
-		<div class="col-10">
+		<div class="col-lg-10">
 				<h3 class="border-bottom row">
-					<a class="col-10" href= <?php echo BASE_PATH . '/Productpage/index/id/' . $product['uid']; ?> >
+					<a class="col-lg-10" href= <?php echo BASE_PATH . '/Productpage/index/id/' . $product['uid']; ?> >
 						<?php echo $product['title']; ?> 
 					</a> 
-					<a href=<?php echo BASE_PATH . "/Cart/addToCart/id/" . $product['uid'] . "/qty/1";  ?> class="col-2">	<i class="fas fa-cart-plus fa-m float-right"></i></a>
+					<a href=<?php echo BASE_PATH . "/Cart/addToCart/id/" . $product['uid'] . "/qty/1";  ?> class="col-lg-2">	<i class="fas fa-cart-plus fa-m float-right"></i></a>
 				</h3>
 				<p><span style="font-weight: 600;">Price: </span><span class="text-secondary">$ <?php echo $product['price']; ?> </span></p>
 				<p><span style="font-weight: 600;">Author: </span><span class="text-secondary"><?php echo $product['author']; ?> </span></p>

@@ -12,6 +12,30 @@ class SelectionDB extends DBconnection{
 	}
 
 
+	public function userData($parameter){
+		$userData = [];
+
+
+		$userId = $parameter['userId'];
+		$queryString = "SELECT * FROM user WHERE user_id=$userId";
+		$this->SELECT($queryString);
+		$userData['mainInfo'] = $this->rows[0];
+
+		//If address is passed, select user addresses from database
+		if(isset($parameter['address'])) { 
+			$queryString = "SELECT * FROM address WHERE user_id=$userId";
+		}
+
+		// if payment passed select and return the user data variable
+		if(isset($parameter['payment'])) {
+			$queryString = "SELECT * FROM payment WHERE user_id=$userId";
+		}
+
+		return $userData;
+
+	}
+
+
 	public function selectProduct($productID = NULL){
 
 	//	Check if product id is NULL
@@ -70,7 +94,15 @@ class SelectionDB extends DBconnection{
 		$queryString = "SELECT user_id, password FROM user WHERE email = '$email'";
 
 		$this->SELECT($queryString);
-		if($password == $this->rows[0]['password']){
+		
+		if(gettype($this->rows) !== "string"){
+			$passwordFromDb = $this->rows[0]['password'];
+		}else{
+			$passwordFromDb = $this->rows;
+		}
+
+
+		if($password === $passwordFromDb){
 			return $this->rows[0]['user_id'];
 		}else{
 			return false;

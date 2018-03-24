@@ -5,17 +5,43 @@ class myAccount extends Controller{
 	public function index($param=array()){
 
 		if(isset($_SESSION['userID'])){
+			
+			// Get user id
+			$userId = $_SESSION['userID'];
 
-				//Select all user data 
+
+			// Instanciate selection class from model
+			$select = new SelectionDB;
+
+			// select user data from database by passing userId, address, and payment
+			$userData = $select -> userData(['userId'=>$userId]);
+			$mainInfo = $userData['mainInfo'];
+
+			// if address passed through parameters
+			// if($param['address']){}		
+					// call $this->addresses function with the all addresses and infos 
+
+
+				// if payment method passed 
+					// select all credit/debit card information and insert into 
+
+
+				//Select all user data and user's image
+				// assign it in to $user variable
 				// assign it in to viewConfig and send it to view
 
+
+
 				$this->contentPath = "/contents/userAccount";
-				$this->viewConfig = ['title' => 'My Account'];
+				$this->viewConfig = [
+										'title' => $mainInfo['firstname'] . "'s Account",
+										'userMainInfo' => $mainInfo
+
+									];
 
 		}else{
 
-
-			if($param == array()){
+			if(!isset($param['view'])){
 				$param['view'] = "";
 			}
 
@@ -35,6 +61,11 @@ class myAccount extends Controller{
 		return $this->get();
 
 	}
+
+	// public function addAddress(address){}
+
+	// public function addPaymentMethod(card){	}
+
 
 	public function signup(){
 	// validate $_POST data

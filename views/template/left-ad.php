@@ -1,4 +1,4 @@
-<div class="col-2 mt-3">
+<div class="col-2 mt-3  d-none d-xl-block d-lg-block">
 
 	<div class="card border mb-3" style="max-width: 18rem;">
   		<div class="card-header text-center text-secondary">POPULAR PRODUCTS</div>

@@ -19,35 +19,10 @@ class Cart extends Controller{
 
 	public function index(){
 		
-		$productsID = [];
-
-		
 		if(isset($_SESSION['items'])){
 
-			 foreach ($_SESSION['items'] as $item) {
-				# Push all cart item id's into productsID array
-				array_push($productsID, $item->id);
-			}
+			$products = $this->calculateCartGetProducts();
 
-
-			$db = new SelectionDB;
-
-			$products = $db->selectProduct($productsID);
-
-			for($i=0; $i<count($products); $i++) {
-				// if($products[$i]['uid'] == $_SESSION['items'][$i]->id){
-				// 	$itemQty = $_SESSION['items'][$i]->qty;
-				// }else{
-					foreach ($_SESSION['items'] as $item) {
-						if($products[$i]['uid'] == $item->id){
-							$itemQty = $item->qty;
-						}
-					}
-				// }
-				$totalCost = $products[$i]['price'] * $itemQty;
-				$products[$i]['qty'] = $itemQty;
-				$products[$i]['totalCost'] = $totalCost;
-			}
 		}else{
 			$products = "Cart is empty";
 		}
@@ -127,8 +102,79 @@ class Cart extends Controller{
 
 
 	public function gotoCheckout(){
-		//This will be implemented soon.. 
+	
+
+		if(isset($_SESSION['userID'])) {
+
+
+			$products = $this->calculateCartGetProducts();
+		
+			$this->contentPath = '/contents/checkoutPage';
+			
+			$this->viewConfig = [
+									'title' => 'Checkout',
+									'products' => $products
+
+								];
+
+
+		}else{
+
+
+			// Set error 
+			$errors['AuthError'] = 'In order to checkout, you have to LogIn';
+
+		//	If There is an error from Model, Send the error message and have client try again.
+			$this->contentPath = '/contents/login';
+			
+			$this->viewConfig = ['title' => 'Auth Error',  'errors'=>$errors];
+
+		}
+
+		return $this->get();
 	}
+
+
+
+	public function paymentProcess(){
+
+		$cardNumber = htmlentities($_POST['cardNumber']);
+		$expirationDate = htmlentities($_POST['expirationDate']);
+
+		// require credit company file
+		require_once(APP_PATH . "/helpers/curl.php");
+
+		// process payment 
+		$result = proccesPayment($cardNumber, $expirationDate);
+
+		//get all products
+		$products = $this->calculateCartGetProducts();
+
+		if($result == "APPROVED"){
+			$this->contentPath = '/contents/invoicePage';
+			$this->viewConfig = [
+									'title' => 'Receipt',
+									'products' => $products
+								];
+		}else{
+		
+			$this->contentPath = '/contents/checkoutPage';
+			
+			$this->viewConfig = [
+									'title' => 'Error Data',
+									'products' => $products,
+									'Error' => 'Something went wrong check your payment information.'
+								];
+		}
+
+		return $this->get();
+
+	}
+
+
+
+
+
 
 
 	//Check if the passed id exists in the session
@@ -145,6 +191,39 @@ class Cart extends Controller{
 
 
 
+	/*
+		Calculate cart and return $product array with item data in it
+	*/
+		public function calculateCartGetProducts(){
+
+			$productsID = [];
+
+
+			 foreach ($_SESSION['items'] as $item) {
+				# Push all cart item id's into productsID array
+				array_push($productsID, $item->id);
+			}
+
+
+			$db = new SelectionDB;
+
+			$products = $db->selectProduct($productsID);
+
+			for($i=0; $i<count($products); $i++) {
+					
+					foreach ($_SESSION['items'] as $item) {
+						if($products[$i]['uid'] == $item->id){
+							$itemQty = $item->qty;
+						}
+					}
+
+				$totalCost = $products[$i]['price'] * $itemQty;
+				$products[$i]['qty'] = $itemQty;
+				$products[$i]['totalCost'] = $totalCost;
+			}
+
+			return $products;
+		}
 }
 
 

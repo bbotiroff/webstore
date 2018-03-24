@@ -1,5 +1,5 @@
 
-<div id="carouselExampleIndicators" class="carousel slide carousel-bgcolor0" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide carousel-bgcolor0 d-none d-xl-block d-lg-block" data-ride="carousel">
 
   <ol class="carousel-indicators">
   
